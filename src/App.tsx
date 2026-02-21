@@ -86,10 +86,10 @@ export default function App() {
       <aside className={`fixed md:static inset-y-0 left-0 z-50 w-[260px] bg-[#2C3E50] text-white transform transition-transform duration-300 ease-in-out ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} flex flex-col h-full overflow-y-auto`}>
         <div className="p-6 border-b border-white/10">
           <h2 className="text-xl font-bold flex items-center gap-2">
-            Poligonal <span className="text-[#2563EB]">PRO</span>
+            Poligonal <span className="text-white">PRO</span>
           </h2>
           <div className="mt-2 inline-block bg-[#EF4444] text-white text-xs font-bold px-2 py-1 rounded">
-            V27.8 [AVALIAÇÃO]
+            V27.9 [AVALIAÇÃO]
           </div>
         </div>
 
@@ -100,9 +100,9 @@ export default function App() {
               <Settings size={16} /> 1. GEOMETRIA
             </h3>
             <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span>Tamanho Máximo do Degrau (m)</span>
-                <span className="font-mono text-[#2563EB] bg-white/10 px-1 rounded">{stepVal.toFixed(1)} m</span>
+              <div className="flex justify-between items-center text-sm gap-2">
+                <span className="leading-tight">Tamanho Máximo do Degrau (m)</span>
+                <span className="font-mono text-[#2563EB] bg-white/10 px-1.5 py-0.5 rounded text-xs whitespace-nowrap">{stepVal.toFixed(1)} m</span>
               </div>
               <input
                 type="range"
@@ -167,8 +167,7 @@ export default function App() {
         </div>
 
         <div className="p-6 border-t border-white/10 text-xs text-white/50">
-          <div className="font-bold text-white mb-1">Poligonal PRO® V27.8</div>
-          <div className="text-[#EF4444] mb-2">· Avaliação</div>
+          <div className="font-bold text-white mb-2">Poligonal PRO® V27.9</div>
           <div>2026 — Todos os direitos reservados</div>
         </div>
       </aside>

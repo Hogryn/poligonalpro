@@ -37,7 +37,7 @@ export function generateSteps(p1: number[], p2: number[], stepMeters: number, wa
   const crossDist = Math.min(dlatM, dlonM);
   const mainDist = Math.max(dlatM, dlonM);
 
-  if (crossDist < mainDist * 0.05 && totalDist > stepMeters) {
+  if (crossDist < mainDist * 0.01 && crossDist < 1.0 && totalDist > stepMeters) {
     const mainIsLat = dlatM >= dlonM;
     const numSteps = Math.max(1, Math.ceil(mainDist / stepMeters));
     const points = [p1];
@@ -255,13 +255,14 @@ export function removeSelfIntersections(points: number[][]) {
 
 export function cleanCollinear(points: number[][]) {
   if (points.length < 3) return points;
+  const eps = 1e-9;
   const clean = [points[0]];
   for (let i = 1; i < points.length - 1; i++) {
     const prev = clean[clean.length - 1];
     const curr = points[i];
     const nxt = points[i + 1];
-    const sl = arePointsClose([prev[0], 0], [curr[0], 0]) && arePointsClose([curr[0], 0], [nxt[0], 0]);
-    const slo = arePointsClose([0, prev[1]], [0, curr[1]]) && arePointsClose([0, curr[1]], [0, nxt[1]]);
+    const sl = arePointsClose([prev[0], 0], [curr[0], 0], eps) && arePointsClose([curr[0], 0], [nxt[0], 0], eps);
+    const slo = arePointsClose([0, prev[1]], [0, curr[1]], eps) && arePointsClose([0, curr[1]], [0, nxt[1]], eps);
     if (!(sl || slo)) clean.push(curr);
   }
   clean.push(points[points.length - 1]);
